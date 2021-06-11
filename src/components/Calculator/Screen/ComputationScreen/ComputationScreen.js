@@ -1,6 +1,7 @@
-import React from "react";
-// import { ScreenStyle } from "../../../Stylings";
+import React, { useContext, useState } from "react";
+import { ValueContext } from "../../../../Context/valueContext";
 
 export default function ComputationScreen() {
-  return <div>3+1+1+1+1+1</div>;
+  const { value } = useContext(ValueContext);
+  return <div>{value}</div>;
 }

@@ -7,7 +7,8 @@ const theme = {
   colorBlack: "black",
   borderRadius: "5px",
   colorBlue: "aqua",
-  colorWhiteLight: "#ccc"
+  colorWhiteLight: "#ccc",
+  textColor: "palevioletred"
 };
 
 export const CalculatorStyle = styled.div`
@@ -26,12 +27,13 @@ export const Title = styled.h1`
   font-size: 1.5em;
   text-align: right;
   margin-right: 20px;
-  color: palevioletred;
+  color: ${theme.textColor};
 `;
 
 export const ScreenStyle = styled.div`
   border-radius: ${theme.borderRadius};
   width: 100%;
+  height: 10vh;
   text-align: right;
   padding: 15px 0;
   background-color: ${theme.colorBlack};
@@ -49,7 +51,7 @@ export const ResultScreenStyle = styled.div`
 export const KeypadStyle = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+
   grid-gap: 5px;
 
   width: 100%;
@@ -62,7 +64,7 @@ export const ButtonStyle = styled.button`
   height: 70px;
   font-size: 2rem;
   border-radius: ${theme.borderRadius};
-  color: ${theme.colorPink};
+  color: ${theme.textColor};
   box-shadow: 0 2px 4px ${theme.shadow};
   background-color: ${theme.colorWhite};
   border: 1px solid transparent;
@@ -71,8 +73,9 @@ export const ButtonStyle = styled.button`
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+  /* grid-column: 3 / span 2; */
   &:hover {
-    color: ${theme.colorWhiteLight};
+    color: ${theme.colorBlack};
     background-color: ${theme.colorPink};
   }
   &:active {

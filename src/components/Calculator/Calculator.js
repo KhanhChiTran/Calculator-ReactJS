@@ -9,7 +9,7 @@ export default function Calculator() {
       <CalculatorStyle>
         <Title>iCalc</Title>
         <Screen />
-        <Keypad></Keypad>
+        <Keypad />
       </CalculatorStyle>
     </div>
   );

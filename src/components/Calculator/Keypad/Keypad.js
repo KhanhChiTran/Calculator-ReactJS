@@ -31,7 +31,7 @@ export default function Keypad() {
         <Button>{">"}</Button>
         <Button>{"<"}</Button>
         <Button>.</Button>
-        <Button>=</Button>
+        <Button span="5">=</Button>
       </KeypadStyle>
     </div>
   );

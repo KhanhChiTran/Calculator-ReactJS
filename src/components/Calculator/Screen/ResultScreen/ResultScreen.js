@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ValueContext } from "../../../../Context/valueContext";
 
 export default function ResultScreen() {
-  return <div>1234444</div>;
+  const { result } = useContext(ValueContext);
+  return <div>{result}</div>;
 }
