@@ -6,8 +6,9 @@ export default function Keypad() {
   return (
     <div>
       <KeypadStyle>
-        <Button>(</Button>
-        <Button>)</Button>
+        <Button title="(" />
+        {/* (</Button> */}
+        <Button>{")"}</Button>
         <Button>C</Button>
         <Button>{"<="}</Button>
         <Button>+</Button>
