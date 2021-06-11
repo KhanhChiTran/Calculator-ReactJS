@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../../Button/Button";
+import { ValueContext } from "../../../Context/valueContext";
 import { KeypadStyle } from "../../Stylings";
 
 export default function Keypad() {
+  const { handleResult } = useContext(ValueContext);
   return (
     <div>
       <KeypadStyle>
@@ -32,7 +34,7 @@ export default function Keypad() {
         <Button>{">"}</Button>
         <Button>{"<"}</Button>
         <Button>.</Button>
-        <Button span="5">=</Button>
+        <Button>=</Button>
       </KeypadStyle>
     </div>
   );
