@@ -9,4 +9,4 @@
   = button to evaluate the expression and show the result.
 - Some buttons for logical operators( < > =< >= === !==)
 
-## ![Demo Calculator](/src/img/calculator-demo.png)
+## ![Demo Calculator](/src/img/calculator-demo1.png)
