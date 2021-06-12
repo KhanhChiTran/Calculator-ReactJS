@@ -8,3 +8,5 @@
 - Back Space button to remove one character from the end of mathematical expression.
   = button to evaluate the expression and show the result.
 - Some buttons for logical operators( < > =< >= === !==)
+
+## ![Demo Calculator](/src/img/calculator-demo.png)
