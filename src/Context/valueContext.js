@@ -61,9 +61,13 @@ export const NumberProvider = ({ children }) => {
     setValue(value + number);
   };
 
-  const handleReset = () => {
+  const handleClear = () => {
     setValue("");
     setResult(0);
+  };
+  const handleParentheses = (e) => {
+    setValue(value + e.target.innerText);
+    console.log(value);
   };
   const handleEqual = (e) => {
     if (
@@ -126,9 +130,10 @@ export const NumberProvider = ({ children }) => {
         result,
         handleNumber,
         handleOperator,
-        handleReset,
+        handleClear,
         handleEqual,
-        handleCompare
+        handleCompare,
+        handleParentheses
       }}
     >
       {children}

@@ -14,17 +14,18 @@ export default function Keypad() {
   const {
     handleNumber,
     handleOperator,
-    handleReset,
+    handleClear,
     handleEqual,
-    handleCompare
+    handleCompare,
+    handleParentheses
   } = useContext(ValueContext);
   return (
     <div>
       <KeypadStyle>
-        <Button title="(" />
+        <Button onClick={handleParentheses} title="(" />
         {/* (</Button> */}
-        <Button>{")"}</Button>
-        <Button onClick={handleReset}>C</Button>
+        <Button onClick={handleParentheses}>{")"}</Button>
+        <Button onClick={handleClear}>C</Button>
         <Button onClick={handleCompare}>{"<="}</Button>
         <Button onClick={handleOperator}>+</Button>
         <Button onClick={handleNumber}>1</Button>

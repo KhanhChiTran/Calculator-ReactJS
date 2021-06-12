@@ -18,7 +18,7 @@ export const CalculatorStyle = styled.div`
 
   max-width: 500px;
   width: 500px;
-  box-shadow: 0 2rem 4rem ${theme.shadow};
+  box-shadow: 0 2rem 4rem ${theme.shadow}, 7px -8px 0px 7px ${theme.colorPink};
   background-color: ${theme.colorPink};
   border-radius: ${theme.borderRadius};
 `;
@@ -37,15 +37,18 @@ export const ScreenStyle = styled.div`
   text-align: right;
   padding: 15px 0;
   background-color: ${theme.colorBlack};
+  box-shadow: inset -5px 5px 6px 0px #cccccc9c;
 `;
 
 export const ComputationScreenStyle = styled.div`
   font-size: 1.5rem;
   color: ${theme.colorWhiteLight};
+  margin-right: 10px;
 `;
 export const ResultScreenStyle = styled.div`
   font-size: 3.5rem;
   color: ${theme.colorWhite};
+  margin-right: 10px;
 `;
 
 export const KeypadStyle = styled.div`
