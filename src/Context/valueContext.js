@@ -1,61 +1,136 @@
-import React, { useState, useContext, createContext } from "react";
+import React, { useState } from "react";
 
 export const ValueContext = React.createContext();
 export const NumberProvider = ({ children }) => {
   const [value, setValue] = useState("");
   const [result, setResult] = useState(0);
-  const [tempNum, setTempNum] = useState(0);
+  const [tempResult, setTempResult] = useState(0);
+  const [tempOperator, setTempOperator] = useState(null);
 
-  const handleOnClick = (e) => {
-    const number = e.target.innerText;
-    setValue(`${(value + number).replace(/^0+/, "")}`);
-    if (number === "=") {
-      if (value !== "" || value !== 0) {
-        if (value.includes("+")) {
-          let x = value.split("+")[0];
-          let y = value.split("+")[1];
-          if (x && y) {
-            setResult(Number(x) + Number(y));
-            setTempNum(result);
-            setValue(Number(x) + Number(y));
-          }
-        } else if (value.includes("-")) {
-          let x = value.split("-")[0];
-          let y = value.split("-")[1];
-          if (x && y) {
-            setResult(Number(x) - Number(y));
-            setTempNum(result);
-            setValue(Number(x) - Number(y));
-          }
-        } else if (value.includes("*")) {
-          let x = value.split("*")[0];
-          let y = value.split("*")[1];
-          if (x && y) {
-            setResult(Number(x) * Number(y));
-            setTempNum(result);
-            setValue(Number(x) * Number(y));
-          }
-        } else if (value.includes("/")) {
-          let x = value.split("/")[0];
-          let y = value.split("/")[1];
-          if (x && y) {
-            setResult(Number(x) / Number(y));
-            setTempNum(result);
-            setValue(Number(x) / Number(y));
-          }
-        }
-      } else {
-        alert("Invalid Calculation");
-      }
+  const handleOperator = (e) => {
+    if (!value) return;
+    setValue(value + e.target.innerText);
+    setTempOperator(e.target.innerText);
+
+    if (
+      !value.includes("+") &&
+      !value.includes("-") &&
+      !value.includes("*") &&
+      !value.includes("/")
+    ) {
+      return;
     }
-    if (number === "C") {
-      setValue(0);
-      setResult(0);
+
+    // Get current Result
+
+    const currentNumber = value.split(tempOperator).slice(-1)[0];
+
+    switch (tempOperator) {
+      case "+":
+        setTempResult(Number(tempResult) + Number(currentNumber));
+        setResult(Number(tempResult) + Number(currentNumber));
+        break;
+      case "-":
+        setTempResult(Number(tempResult) - Number(currentNumber));
+        setResult(Number(tempResult) - Number(currentNumber));
+        break;
+      case "*":
+        setTempResult(Number(tempResult) * Number(currentNumber));
+        setResult(Number(tempResult) * Number(currentNumber));
+
+        break;
+      case "/":
+        setTempResult(Number(tempResult) / Number(currentNumber));
+        setResult(Number(tempResult) / Number(currentNumber));
+
+        break;
     }
   };
 
+  const handleNumber = (e) => {
+    const number = e.target.innerText;
+    if (
+      !value.includes("+") &&
+      !value.includes("-") &&
+      !value.includes("*") &&
+      !value.includes("/")
+    ) {
+      setResult(value + number);
+      setTempResult(value + number);
+    }
+    setValue(value + number);
+  };
+
+  const handleReset = () => {
+    setValue("");
+    setResult(0);
+  };
+  const handleEqual = (e) => {
+    if (
+      value.includes("+") ||
+      value.includes("-") ||
+      value.includes("*") ||
+      value.includes("/")
+    ) {
+      handleOperator(e);
+    }
+    if (
+      value.includes("===") ||
+      value.includes("!==") ||
+      value.includes("<") ||
+      value.includes(">")
+    ) {
+      handleCompare(e);
+    }
+    setValue("");
+  };
+  const handleCompare = (e) => {
+    if (!value) return;
+    setValue(value + e.target.innerText);
+    setTempOperator(e.target.innerText);
+
+    if (
+      !value.includes("===") &&
+      !value.includes("!==") &&
+      !value.includes(">") &&
+      !value.includes("<")
+    ) {
+      return;
+    }
+
+    const firstNumber = Number(value.split(tempOperator)[0]);
+    const secondNumber = Number(value.split(tempOperator)[1]);
+
+    switch (tempOperator) {
+      case "===":
+        firstNumber === secondNumber ? setResult("True") : setResult("False");
+        break;
+      case "!==":
+        firstNumber !== secondNumber ? setResult("True") : setResult("False");
+        break;
+      case "<":
+        firstNumber < secondNumber ? setResult("True") : setResult("False");
+        break;
+      case ">":
+        firstNumber > secondNumber ? setResult("True") : setResult("False");
+        break;
+      case "<=":
+        firstNumber <= secondNumber ? setResult("True") : setResult("False");
+        break;
+    }
+  };
   return (
-    <ValueContext.Provider value={{ value, result, handleOnClick }}>
+    <ValueContext.Provider
+      value={{
+        value,
+        result,
+        handleNumber,
+        handleOperator,
+        handleReset,
+        handleEqual,
+        handleCompare
+      }}
+    >
       {children}
     </ValueContext.Provider>
   );
